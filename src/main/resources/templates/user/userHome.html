@@ -21,6 +21,24 @@
 				type="Submit">Logout</button>
 		</form>
 
+		<table>
+			<thead>
+				<tr>
+					<th>Restaurant</th>
+					<th>Votes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${todayVotes.empty}">
+					<td colspan="2">No Votes Available</td>
+				</tr>
+				<tr th:each="vote : ${todayVotes}">
+					<td><span th:text="${vote.name}"> Name </span></td>
+					<td><span th:text="${vote.count}"> Count </span></td>
+				</tr>
+			</tbody>
+		</table>
+
 		<div class="panel-group" style="margin-top: 40px">
 			<div class="panel panel-primary">
 				<div class="panel-heading">

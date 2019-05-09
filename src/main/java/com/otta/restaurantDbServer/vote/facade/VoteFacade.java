@@ -1,5 +1,7 @@
 package com.otta.restaurantDbServer.vote.facade;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,4 +32,7 @@ public class VoteFacade {
 		return voteRepository.findByElectionAndUser(election, user);
 	}
  
+	public List<Vote> findByElection(Election election) {
+		return voteRepository.findByElection(election);
+	}
 }
