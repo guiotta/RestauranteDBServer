@@ -1,6 +1,5 @@
 package com.otta.restaurantDbServer.user.facade;
 
-import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

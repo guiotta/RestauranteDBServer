@@ -13,6 +13,9 @@ public class Election {
 	@GeneratedValue
 	private BigInteger id;
 	private LocalDate date;
+	
+	public Election() {
+	}
 
 	public Election(BigInteger id, LocalDate date) {
 		this.id = id;
@@ -23,7 +26,15 @@ public class Election {
 		return id;
 	}
 
+	public void setId(BigInteger id) {
+		this.id = id;
+	}
+
 	public LocalDate getDate() {
 		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 }

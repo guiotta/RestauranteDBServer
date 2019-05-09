@@ -23,6 +23,9 @@ public class Vote {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_election")
 	private Election election;
+	
+	public Vote() {
+	}
 
 	public Vote(BigInteger id, User user, Restaurant restaurant, Election election) {
 		this.id = id;
@@ -35,15 +38,31 @@ public class Vote {
 		return id;
 	}
 
+	public void setId(BigInteger id) {
+		this.id = id;
+	}
+
 	public User getUser() {
 		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Restaurant getRestaurant() {
 		return restaurant;
 	}
 
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
 	public Election getElection() {
 		return election;
+	}
+
+	public void setElection(Election election) {
+		this.election = election;
 	}
 }
