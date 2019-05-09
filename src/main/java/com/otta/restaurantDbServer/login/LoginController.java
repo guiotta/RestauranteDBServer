@@ -5,8 +5,6 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,17 +52,6 @@ public class LoginController {
 			modelAndView.setViewName("registration");
 
 		}
-		return modelAndView;
-	}
-
-	@RequestMapping(value = "/user/userHome", method = RequestMethod.GET)
-	public ModelAndView user() {
-		ModelAndView modelAndView = new ModelAndView();
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userFacade.findByName(auth.getName()).stream().findFirst().get();
-		modelAndView.addObject("userName", "Welcome " + user.getName());
-		modelAndView.addObject("userMessage", "This Page is available to Users with User Role");
-		modelAndView.setViewName("user/userHome");
 		return modelAndView;
 	}
 }
