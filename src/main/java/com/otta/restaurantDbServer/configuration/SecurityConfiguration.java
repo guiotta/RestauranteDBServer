@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -51,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	            .antMatchers("/registration").permitAll()
 	            .antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
 	            .authenticated().and().csrf().disable().formLogin()
-	            //.loginPage("/login").failureUrl("/login?error=true")
+	            .loginPage("/login").failureUrl("/login?error=true")
 	            //.defaultSuccessUrl("/admin/adminHome")
 	            .usernameParameter("name")
 	            .passwordParameter("password")
