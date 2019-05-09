@@ -13,6 +13,9 @@ public class Restaurant {
 	private BigInteger id;
 	private String name;
 
+	public Restaurant() {
+	}
+
 	public Restaurant(BigInteger id, String name) {
 		this.id = id;
 		this.name = name;
@@ -22,8 +25,16 @@ public class Restaurant {
 		return id;
 	}
 
+	public void setId(BigInteger id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }
