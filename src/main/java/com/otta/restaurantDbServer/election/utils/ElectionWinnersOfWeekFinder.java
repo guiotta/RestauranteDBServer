@@ -12,6 +12,11 @@ import org.springframework.stereotype.Component;
 import com.otta.restaurantDbServer.database.entity.Restaurant;
 import com.otta.restaurantDbServer.election.bean.ElectionWinner;
 
+/**
+ * Dado um determinado dia da semana, busca os restaurantes vencedores das eleições dos dias anteriores.
+ * @author Guilherme
+ *
+ */
 @Component
 public class ElectionWinnersOfWeekFinder {
 	@Autowired

@@ -9,6 +9,12 @@ import org.springframework.stereotype.Component;
 
 import com.otta.restaurantDbServer.election.bean.ElectionWinner;
 
+/**
+ * Recebe uma lista com os restaurantes vencedores da semana. Caso existam dias sem vencedor, adicionar um objeto vazio
+ * para manter a consistência no sistema.
+ * @author Guilherme
+ *
+ */
 @Component
 public class ElectionWinnersOfWeekDummyAppender {
 	private static final int MAX_DAY_OF_WEEK_IDENTIFIER = 7;

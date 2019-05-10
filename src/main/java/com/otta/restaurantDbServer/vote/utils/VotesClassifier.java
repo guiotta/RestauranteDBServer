@@ -18,6 +18,11 @@ import com.otta.restaurantDbServer.election.facade.ElectionFacade;
 import com.otta.restaurantDbServer.vote.bean.VoteRestaurantCounter;
 import com.otta.restaurantDbServer.vote.facade.VoteFacade;
 
+/**
+ * Retorna um objeto contendo os restaurantes votados (e a quantidade de votos) de um determinado dia. 
+ * @author Guilherme
+ *
+ */
 @Component
 public class VotesClassifier {
 	@Autowired

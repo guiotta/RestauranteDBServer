@@ -31,7 +31,7 @@ public class UserController {
 	public ModelAndView user() {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userFacade.findByName(auth.getName()).stream().findFirst().get();
+		User user = userFacade.findByNameIgnoreCase(auth.getName());
 		List<Restaurant> availableRestaurants = restaurantFacade.listAllAvailableRestaurants();
 		List<VoteRestaurantCounter> todayVotes = classifier.classify(LocalDate.now());
 		

@@ -52,7 +52,7 @@ public class VoteController {
 	public ModelAndView vote(@Valid Vote vote, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		User user = userFacade.findByName(auth.getName()).stream().findFirst().get();
+		User user = userFacade.findByNameIgnoreCase(auth.getName());
 		Restaurant restaurantExists = vote.getRestaurant();
 		Election election = selectElectionForToday();
 		Vote voteExists = voteFacade.findByElectionAndUser(election, user);

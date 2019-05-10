@@ -1,7 +1,6 @@
 package com.otta.restaurantDbServer.user.facade;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +29,8 @@ public class UserFacade {
 		userRepository.save(user);
 	}
 	
-	public List<User> findByName(String name) {
-		return userRepository.findByName(name);
+	public User findByNameIgnoreCase(String name) {
+		return userRepository.findByNameIgnoreCase(name);
 	}
 	
 	private Set<Role> createRolesForNewUser() {

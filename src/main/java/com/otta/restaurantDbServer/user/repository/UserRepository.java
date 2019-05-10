@@ -10,4 +10,5 @@ import com.otta.restaurantDbServer.database.entity.User;
 public interface UserRepository extends CrudRepository<User, BigInteger> {
 
 	List<User> findByName(String name);
+	User findByNameIgnoreCase(String name);
 }

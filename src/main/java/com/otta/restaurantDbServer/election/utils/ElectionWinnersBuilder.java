@@ -8,6 +8,11 @@ import org.springframework.stereotype.Component;
 
 import com.otta.restaurantDbServer.election.bean.ElectionWinner;
 
+/**
+ * Constrói uma lista com os ganhadores da semana. Caso o dia não tenha uma eleição, retorna o atributo vázio.
+ * @author Guilherme
+ *
+ */
 @Component
 public class ElectionWinnersBuilder {
 	@Autowired

@@ -38,8 +38,14 @@ public class LoginController {
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
-		Optional<User> userExists = userFacade.findByName(user.getName()).stream().findFirst();
-		if (userExists.isPresent()) {
+		Optional<User> userExists = Optional.ofNullable(userFacade.findByNameIgnoreCase(user.getName()));
+		if (user.getName() == null || user.getName().trim().isEmpty()) {
+			bindingResult.rejectValue("name", "error.user",
+					"Could not save user without name");
+		} else if (user.getPassword() == null || user.getPassword().trim().isEmpty()) {
+			bindingResult.rejectValue("password", "error.user",
+					"Could not save user without password");
+		} else if (userExists.isPresent()) {
 			bindingResult.rejectValue("name", "error.user",
 					"There is already a user registered with the name provided");
 		}

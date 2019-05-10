@@ -16,6 +16,11 @@ import com.otta.restaurantDbServer.database.entity.Vote;
 import com.otta.restaurantDbServer.election.facade.ElectionFacade;
 import com.otta.restaurantDbServer.vote.facade.VoteFacade;
 
+/**
+ * Retorna o restaurate que foi o vencedor da eleição de um dia. Pode retornar um valor nulo.
+ * @author Guilherme
+ *
+ */
 @Component
 public class ElectionWinnerFinder {
 	@Autowired
