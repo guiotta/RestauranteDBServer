@@ -2,6 +2,7 @@ package com.otta.restaurantDbServer.vote.utils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
@@ -38,6 +39,7 @@ public class VotesClassifier {
 
 			counterList.addAll(entries.stream()
 					.map(entry -> new VoteRestaurantCounter(entry.getKey(), entry.getValue()))
+					.sorted(Comparator.comparing(VoteRestaurantCounter::getCount).reversed())
 					.collect(Collectors.toList()));
 		}
 		
