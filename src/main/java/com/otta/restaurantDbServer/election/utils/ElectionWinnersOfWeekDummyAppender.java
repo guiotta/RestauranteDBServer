@@ -25,7 +25,7 @@ public class ElectionWinnersOfWeekDummyAppender {
 		for (int dayCount = MAX_DAY_OF_WEEK_IDENTIFIER; dayCount > 0; dayCount--) {
 			DayOfWeek dayOfWeek = DayOfWeek.of(dayCount);
 
-			if (winners.stream().anyMatch(winner -> winner.getDay() != dayOfWeek)) {
+			if (winners.stream().allMatch(winner -> winner.getDay() != dayOfWeek)) {
 				winnersUpdatedList.add(new ElectionWinner(dayOfWeek, Optional.empty()));
 			}
 		}

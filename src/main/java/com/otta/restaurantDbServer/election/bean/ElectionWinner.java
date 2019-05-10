@@ -1,6 +1,7 @@
 package com.otta.restaurantDbServer.election.bean;
 
 import java.time.DayOfWeek;
+import java.util.Objects;
 import java.util.Optional;
 
 import com.otta.restaurantDbServer.database.entity.Restaurant;
@@ -32,5 +33,22 @@ public class ElectionWinner {
 	
 	public boolean isRestaurantPresent() {
 		return restaurant.isPresent();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(day, restaurant);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ElectionWinner other = (ElectionWinner) obj;
+		return day == other.day && Objects.equals(restaurant, other.restaurant);
 	}
 }
