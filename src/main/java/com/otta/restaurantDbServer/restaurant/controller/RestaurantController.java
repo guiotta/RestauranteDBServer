@@ -30,7 +30,10 @@ public class RestaurantController {
 	public ModelAndView createNewRestaurant(@Valid Restaurant restaurant, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
 		Restaurant restaurantExists = restaurantFacade.findByName(restaurant.getName());
-		if (restaurantExists != null) {
+		if (restaurant.getName() == null || restaurant.getName().trim().isEmpty()) {
+			bindingResult.rejectValue("name", "error.restaurant",
+					"Restaurant name could not be empty");
+		} else if (restaurantExists != null) {
 			bindingResult.rejectValue("name", "error.restaurant",
 					"There is already a restaurant registered with the name provided");
 		}

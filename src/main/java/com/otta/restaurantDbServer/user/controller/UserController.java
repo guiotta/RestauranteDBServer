@@ -38,7 +38,6 @@ public class UserController {
 		modelAndView.addObject("userName", "Welcome " + user.getName());
 		modelAndView.addObject("availableRestaurants", availableRestaurants);
 		modelAndView.addObject("todayVotes", todayVotes);
-		modelAndView.addObject("userMessage", "This Page is available to Users with User Role");
 		modelAndView.setViewName("user/userHome");
 		return modelAndView;
 	}
