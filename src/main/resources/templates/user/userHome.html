@@ -21,7 +21,7 @@
 				type="Submit">Logout</button>
 		</form>
 
-		<table>
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>Restaurant</th>
@@ -45,25 +45,32 @@
 					<span th:utext="${userName}"></span>
 				</div>
 				<div class="panel-body">
-					<img th:src="@{/images/user.jpg}"
-						class="img-responsive center-block" width="400" height="400"
-						alt="User" />
-
-					<div class="form-group blu-margin"
-						th:object="${availableRestaurants}">
-						<form th:action="@{/vote/voteHome}" method="get">
-							<button class="btn btn-md btn-danger btn-block"
-								name="addRestaurant" type="Submit">Vote</button>
-						</form>
+					<div>
+						<img th:src="@{/images/lunch_icon.jpg}"
+							class="img-responsive center-block" width="250" height="250"
+							alt="User" />
 					</div>
+
+					<div class="center-block button-group">
+						<div th:object="${availableRestaurants}">
+							<form th:action="@{/vote/voteHome}" method="get">
+								<button class="btn btn-success btn-block" name="vote"
+									type="Submit">Vote</button>
+							</form>
+						</div>
+
+						<form class="form-group blu-margin"
+							th:action="@{/restaurant/restaurantHome}" method="get">
+							<button class="btn btn-md btn-primary btn-block"
+								name="addRestaurant" type="Submit">Add Restaurant</button>
+						</form>
+
+					</div>
+
 
 				</div>
 				<p class="admin-message-text text-center" th:utext="${userMessage}"></p>
 
-				<form th:action="@{/restaurant/restaurantHome}" method="get">
-					<button class="btn btn-md btn-danger btn-block"
-						name="addRestaurant" type="Submit">Add Restaurant</button>
-				</form>
 			</div>
 		</div>
 
