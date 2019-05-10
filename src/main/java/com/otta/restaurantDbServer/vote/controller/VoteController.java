@@ -20,6 +20,7 @@ import com.otta.restaurantDbServer.database.entity.User;
 import com.otta.restaurantDbServer.database.entity.Vote;
 import com.otta.restaurantDbServer.election.facade.ElectionFacade;
 import com.otta.restaurantDbServer.restaurant.facade.RestaurantFacade;
+import com.otta.restaurantDbServer.restaurant.service.RestaurantService;
 import com.otta.restaurantDbServer.user.facade.UserFacade;
 import com.otta.restaurantDbServer.vote.facade.VoteFacade;
 
@@ -33,13 +34,15 @@ public class VoteController {
 	private ElectionFacade electionFacade;
 	@Autowired
 	private VoteFacade voteFacade;
+	@Autowired
+	private RestaurantService restaurantService;
 	
 	@RequestMapping(value = "/vote/voteHome", method = RequestMethod.GET)
-	public ModelAndView registration() {
+	public ModelAndView goToVoteHome() {
 		ModelAndView modelAndView = new ModelAndView();
 		Vote vote = new Vote();
 		modelAndView.addObject("vote", vote);
-		List<Restaurant> availableRestaurants = restaurantFacade.listAllAvailableRestaurants();
+		List<Restaurant> availableRestaurants = restaurantService.build();
 		modelAndView.addObject("availableRestaurants", availableRestaurants);
 		modelAndView.setViewName("vote/voteHome");
 		return modelAndView;
