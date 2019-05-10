@@ -1,25 +1,24 @@
 package com.otta.restaurantDbServer.database.entity;
 
 import java.math.BigInteger;
-import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Election {
+public class Role {
 	@Id
 	@GeneratedValue
 	private BigInteger id;
-	private LocalDate date;
-	
-	public Election() {
+	private String role;
+
+	public Role() {
 	}
 
-	public Election(BigInteger id, LocalDate date) {
+	public Role(BigInteger id, String role) {
 		this.id = id;
-		this.date = date;
+		this.role = role;
 	}
 
 	public BigInteger getId() {
@@ -30,11 +29,12 @@ public class Election {
 		this.id = id;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public String getRole() {
+		return role;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setRole(String role) {
+		this.role = role;
 	}
+
 }
