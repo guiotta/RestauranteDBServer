@@ -1,6 +1,7 @@
 package com.otta.restaurantDbServer.database.entity;
 
 import java.math.BigInteger;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -72,5 +73,23 @@ public class User {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(active, id, name, password, roles);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return active == other.active && Objects.equals(id, other.id) && Objects.equals(name, other.name)
+				&& Objects.equals(password, other.password) && Objects.equals(roles, other.roles);
 	}
 }

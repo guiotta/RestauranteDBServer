@@ -14,6 +14,8 @@ import com.otta.restaurantDbServer.user.repository.UserRepository;
 
 @Component
 public class UserFacade {
+	private static final String ROLE_NAME= "USER";
+	
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -35,7 +37,7 @@ public class UserFacade {
 	
 	private Set<Role> createRolesForNewUser() {
 		Set<Role> roles = new HashSet<>();
-		Role userRole = roleRepository.findByRole("USER"); 
+		Role userRole = roleRepository.findByRole(ROLE_NAME); 
 		roles.add(userRole);
 		
 		return roles;
