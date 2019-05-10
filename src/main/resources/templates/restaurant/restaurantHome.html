@@ -46,9 +46,9 @@
 								</div>
 
 								<br /> <label th:if="${#fields.hasErrors('name')}"
-									th:errors="*{name}" class="validation-message"></label> <input
-									type="text" id="name" name="name" th:placeholder="Name"
-									class="form-control" /> <br />
+									th:errors="*{name}" class="validation-message"></label>
+									<input type="text" id="name" name="name" th:placeholder="Name"
+									class="form-control" maxlength="64"/> <br />
 
 								<div align="center" th:if="${param.error}">
 									<p style="font-size: 20; color: #FF1C19;">Name or Password
