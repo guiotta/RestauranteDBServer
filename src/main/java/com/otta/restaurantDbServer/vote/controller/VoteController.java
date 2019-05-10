@@ -39,7 +39,7 @@ public class VoteController {
 		ModelAndView modelAndView = new ModelAndView();
 		Vote vote = new Vote();
 		modelAndView.addObject("vote", vote);
-		List<Restaurant> availableRestaurants = restaurantService.listAllAvailableRestaurants();
+		List<Restaurant> availableRestaurants = restaurantService.listAllAvailableRestaurants(LocalDate.now());
 		modelAndView.addObject("availableRestaurants", availableRestaurants);
 		modelAndView.setViewName("vote/voteHome");
 		return modelAndView;
@@ -70,7 +70,7 @@ public class VoteController {
 			modelAndView.setViewName("vote/voteHome");
 		}
 		
-		List<Restaurant> availableRestaurants = restaurantService.listAllAvailableRestaurants();
+		List<Restaurant> availableRestaurants = restaurantService.listAllAvailableRestaurants(LocalDate.now());
 		modelAndView.addObject("userName", "Welcome " + user.getName());
 		modelAndView.addObject("availableRestaurants", availableRestaurants);
 		return modelAndView;

@@ -21,9 +21,9 @@ public class RestaurantService {
 	/**
 	 * Lista todos os restaurantes que estevam disponíveis para votação no dia atual.
 	 */
-	public List<Restaurant> listAllAvailableRestaurants() {
+	public List<Restaurant> listAllAvailableRestaurants(LocalDate date) {
 		List<Restaurant> availableRestaurants = restaurantFacade.listAllAvailableRestaurants();
-		List<ElectionWinner> electionWinners = electionWinnersBuilder.build(LocalDate.now());
+		List<ElectionWinner> electionWinners = electionWinnersBuilder.build(date);
 		
 		electionWinners.stream()
 			.filter(winner -> winner.isRestaurantPresent())
