@@ -42,13 +42,15 @@ public class LoginController {
 		if (user.getName() == null || user.getName().trim().isEmpty()) {
 			bindingResult.rejectValue("name", "error.user",
 					"Could not save user without name");
-		} else if (user.getPassword() == null || user.getPassword().trim().isEmpty()) {
-			bindingResult.rejectValue("password", "error.user",
-					"Could not save user without password");
 		} else if (userExists.isPresent()) {
 			bindingResult.rejectValue("name", "error.user",
 					"There is already a user registered with the name provided");
 		}
+		if (user.getPassword() == null || user.getPassword().trim().isEmpty()) {
+			bindingResult.rejectValue("password", "error.user",
+					"Could not save user without password");
+		}
+		
 		if (bindingResult.hasErrors()) {
 			modelAndView.setViewName("registration");
 		} else {

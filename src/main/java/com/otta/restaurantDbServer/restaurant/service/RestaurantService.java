@@ -18,7 +18,10 @@ public class RestaurantService {
 	@Autowired
 	private ElectionWinnersBuilder electionWinnersBuilder;
 	
-	public List<Restaurant> build() {
+	/**
+	 * Lista todos os restaurantes que estevam disponíveis para votação no dia atual.
+	 */
+	public List<Restaurant> listAllAvailableRestaurants() {
 		List<Restaurant> availableRestaurants = restaurantFacade.listAllAvailableRestaurants();
 		List<ElectionWinner> electionWinners = electionWinnersBuilder.build(LocalDate.now());
 		

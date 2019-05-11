@@ -18,8 +18,7 @@ import com.otta.restaurantDbServer.database.entity.Election;
 import com.otta.restaurantDbServer.database.entity.Restaurant;
 import com.otta.restaurantDbServer.database.entity.User;
 import com.otta.restaurantDbServer.database.entity.Vote;
-import com.otta.restaurantDbServer.election.facade.ElectionFacade;
-import com.otta.restaurantDbServer.restaurant.facade.RestaurantFacade;
+import com.otta.restaurantDbServer.election.service.ElectionService;
 import com.otta.restaurantDbServer.restaurant.service.RestaurantService;
 import com.otta.restaurantDbServer.user.facade.UserFacade;
 import com.otta.restaurantDbServer.vote.facade.VoteFacade;
@@ -29,9 +28,7 @@ public class VoteController {
 	@Autowired
 	private UserFacade userFacade;
 	@Autowired
-	private RestaurantFacade restaurantFacade;
-	@Autowired
-	private ElectionFacade electionFacade;
+	private ElectionService electionService;
 	@Autowired
 	private VoteFacade voteFacade;
 	@Autowired
@@ -42,7 +39,7 @@ public class VoteController {
 		ModelAndView modelAndView = new ModelAndView();
 		Vote vote = new Vote();
 		modelAndView.addObject("vote", vote);
-		List<Restaurant> availableRestaurants = restaurantService.build();
+		List<Restaurant> availableRestaurants = restaurantService.listAllAvailableRestaurants();
 		modelAndView.addObject("availableRestaurants", availableRestaurants);
 		modelAndView.setViewName("vote/voteHome");
 		return modelAndView;
@@ -54,7 +51,7 @@ public class VoteController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userFacade.findByNameIgnoreCase(auth.getName());
 		Restaurant restaurantExists = vote.getRestaurant();
-		Election election = selectElectionForToday();
+		Election election = electionService.getValidElectionForDay(LocalDate.now());
 		Vote voteExists = voteFacade.findByElectionAndUser(election, user);
 		
 		if (voteExists != null) {
@@ -73,16 +70,9 @@ public class VoteController {
 			modelAndView.setViewName("vote/voteHome");
 		}
 		
-		List<Restaurant> availableRestaurants = restaurantFacade.listAllAvailableRestaurants();
+		List<Restaurant> availableRestaurants = restaurantService.listAllAvailableRestaurants();
 		modelAndView.addObject("userName", "Welcome " + user.getName());
 		modelAndView.addObject("availableRestaurants", availableRestaurants);
 		return modelAndView;
-	}
-	
-	private Election selectElectionForToday() {
-		if (!electionFacade.hasElectionForDate(LocalDate.now())) {
-			electionFacade.createAndSaveNewElection();
-		}
-		return electionFacade.findElectionByDate(LocalDate.now());
 	}
 }
